@@ -189,6 +189,34 @@
   .nl-btn { background:linear-gradient(135deg,var(--primary),var(--accent)); border:none; color:white; padding:0.8rem 1.5rem; border-radius:10px; font-weight:700; cursor:pointer; white-space:nowrap; transition:all .2s; }
   .nl-btn:hover { transform:scale(1.03); }
 
+  /* AI QUIZ */
+  .aiq-opts { display:flex; gap:0.7rem; flex-wrap:wrap; justify-content:center; }
+  .aiq-opt { padding:0.7rem 1.3rem; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,0.03); cursor:pointer; font-size:0.88rem; font-weight:600; transition:all .2s; }
+  .aiq-opt:hover { border-color:var(--primary); color:var(--primary); }
+  .aiq-opt.selected { background:rgba(168,85,247,0.15); border-color:var(--primary); color:var(--primary); }
+  .aiq-result-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:0.8rem; margin-top:1.2rem; }
+  .aiq-rec { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:1rem; }
+  .aiq-rec-top { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; }
+  .aiq-rec-logo { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+  .aiq-rec-name { font-weight:800; font-size:0.9rem; }
+  .aiq-rec-why { color:var(--muted); font-size:0.8rem; line-height:1.5; }
+  .aiq-tr-score { display:flex; gap:2px; margin-top:0.4rem; }
+
+  /* PROMPT OKULU */
+  .ps-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.3rem; }
+  .ps-num { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--accent)); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.85rem; margin-bottom:0.8rem; }
+  .ps-title { font-weight:800; font-size:0.95rem; margin-bottom:0.5rem; }
+  .ps-bad { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:0.6rem 0.8rem; font-size:0.78rem; color:#fca5a5; margin-bottom:0.5rem; font-family:monospace; }
+  .ps-good { background:rgba(74,222,128,0.1); border:1px solid rgba(74,222,128,0.2); border-radius:8px; padding:0.6rem 0.8rem; font-size:0.78rem; color:#86efac; font-family:monospace; }
+  .ps-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:0.2rem; }
+
+  /* KAZAN */
+  .earn-card { background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:12px; padding:1.2rem; }
+  .earn-icon { font-size:1.8rem; margin-bottom:0.6rem; }
+  .earn-title { font-weight:800; font-size:0.92rem; margin-bottom:0.4rem; }
+  .earn-range { color:var(--success); font-weight:700; font-size:0.88rem; margin-bottom:0.4rem; }
+  .earn-desc { color:var(--muted); font-size:0.8rem; line-height:1.5; }
+
   /* TOAST */
   .toast { position:fixed; bottom:2rem; right:2rem; background:#1a1a1a; border:1px solid var(--primary); color:white; padding:0.8rem 1.2rem; border-radius:10px; font-size:0.85rem; z-index:500; transform:translateY(100px); opacity:0; transition:all .3s; }
   .toast.show { transform:translateY(0); opacity:1; }
@@ -287,6 +315,69 @@
     <a href="#" style="color:var(--primary);font-size:0.85rem;font-weight:600">Tümünü Gör →</a>
   </div>
   <div class="news-grid" id="news-grid"></div>
+</div>
+
+<!-- BANA UYGUN AI QUIZ -->
+<div style="max-width:1300px;margin:5rem auto;padding:0 1.5rem" id="quiz-ai">
+  <div style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(244,114,182,0.08));border:1px solid rgba(168,85,247,0.25);border-radius:20px;padding:2.5rem">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);color:var(--primary);padding:0.3rem 0.9rem;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:1rem">🧠 AI Eşleştirici</div>
+      <h2 style="font-size:1.8rem;font-weight:900;margin-bottom:0.6rem">Bana Uygun AI Hangisi?</h2>
+      <p style="color:var(--muted);font-size:0.9rem">3 soruda sana en uygun yapay zeka araçlarını buluyoruz</p>
+    </div>
+    <div id="aiq-body">
+      <div class="aiq-step" id="aiq-1">
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:1rem;text-align:center">Ne yapmak istiyorsun?</div>
+        <div class="aiq-opts">
+          <div class="aiq-opt" onclick="aiqSelect('amaç','metin',this)">✍️ Metin & İçerik Yaz</div>
+          <div class="aiq-opt" onclick="aiqSelect('amaç','gorsel',this)">🎨 Görsel Oluştur</div>
+          <div class="aiq-opt" onclick="aiqSelect('amaç','kod',this)">💻 Kod Yaz / Debug Et</div>
+          <div class="aiq-opt" onclick="aiqSelect('amaç','video',this)">🎬 Video Üret</div>
+          <div class="aiq-opt" onclick="aiqSelect('amaç','analiz',this)">🔬 Araştır / Analiz Et</div>
+          <div class="aiq-opt" onclick="aiqSelect('amaç','ses',this)">🎵 Ses & Müzik Üret</div>
+        </div>
+      </div>
+      <div class="aiq-step" id="aiq-2" style="display:none">
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:1rem;text-align:center">Bütçen nasıl?</div>
+        <div class="aiq-opts">
+          <div class="aiq-opt" onclick="aiqSelect('bütçe','ucretsiz',this)">🆓 Tamamen ücretsiz olsun</div>
+          <div class="aiq-opt" onclick="aiqSelect('bütçe','ucuz',this)">💰 Aylık 5-20$ ödeyebilirim</div>
+          <div class="aiq-opt" onclick="aiqSelect('bütçe','premium',this)">💎 Fiyat önemli değil, en iyi olsun</div>
+        </div>
+      </div>
+      <div class="aiq-step" id="aiq-3" style="display:none">
+        <div style="font-weight:700;font-size:0.95rem;margin-bottom:1rem;text-align:center">Türkçe desteği ne kadar önemli?</div>
+        <div class="aiq-opts">
+          <div class="aiq-opt" onclick="aiqSelect('dil','zorunlu',this)">🇹🇷 Türkçe şart, başka dil bilmiyorum</div>
+          <div class="aiq-opt" onclick="aiqSelect('dil','tercih',this)">🔡 Türkçe tercihim ama İngilizce de olur</div>
+          <div class="aiq-opt" onclick="aiqSelect('dil','onemli_degil',this)">🌍 Fark etmez, İngilizce rahatım</div>
+        </div>
+      </div>
+      <div id="aiq-result" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMPT OKULU -->
+<div style="max-width:1300px;margin:5rem auto;padding:0 1.5rem" id="prompt-okulu">
+  <div style="margin-bottom:1.5rem">
+    <div style="font-size:0.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.6rem">Prompt Okulu</div>
+    <h2 style="font-size:1.8rem;font-weight:900;margin-bottom:0.4rem">ChatGPT'den 10x Daha İyi Sonuç Al</h2>
+    <p style="color:var(--muted)">Çoğu kullanıcı ChatGPT'yi yanlış kullanıyor. Bu 5 teknik ile sen fark yarat.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.2rem" id="ps-grid"></div>
+</div>
+
+<!-- AI İLE PARA KAZAN -->
+<div style="max-width:1300px;margin:5rem auto;padding:0 1.5rem" id="para-kazan">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem">
+    <div style="margin-bottom:2rem">
+      <div style="font-size:0.72rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.6rem">Gelir Fırsatları</div>
+      <h2 style="font-size:1.8rem;font-weight:900;margin-bottom:0.4rem">🤑 AI ile Para Kazanma Yolları</h2>
+      <p style="color:var(--muted)">Türkiye'den çalışarak dövizle kazanmanın 6 kanıtlanmış yolu</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem" id="earn-grid"></div>
+  </div>
 </div>
 
 <!-- NEWSLETTER -->
@@ -497,6 +588,98 @@ function animateCount(el, target, suffix='') {
     if(cur >= target) clearInterval(int);
   }, 25);
 }
+
+// ─── AI QUIZ ─────────────────────────────────────────────────────────────────
+const aiqData = {};
+const AIQ_RECS = {
+  metin: {
+    ucretsiz: [{logo:'🤖',bg:'rgba(16,185,129,0.15)',name:'ChatGPT Free',why:'Türkçe metin için en güçlü ücretsiz seçenek. GPT-4o ile günlük 10 mesaj.',tr:5},{logo:'✦',bg:'rgba(99,102,241,0.15)',name:'Claude (Free)',why:'Uzun metin analizi ve yazma için ChatGPT alternatifi. Türkçe desteği güçlü.',tr:4},{logo:'⚡',bg:'rgba(245,158,11,0.15)',name:'Gemini Free',why:'Google entegrasyonlu. Docs ve Slides ile birlikte kullanım için ideal.',tr:4}],
+    ucuz: [{logo:'🤖',bg:'rgba(16,185,129,0.15)',name:'ChatGPT Plus',why:'Aylık $20. GPT-4o sınırsız, en iyi Türkçe metin modeli.',tr:5},{logo:'✦',bg:'rgba(99,102,241,0.15)',name:'Claude Pro',why:'Aylık $20. 200K token bağlamıyla uzun belge yazımı için ideal.',tr:4}],
+    premium: [{logo:'🤖',bg:'rgba(16,185,129,0.15)',name:'ChatGPT Team',why:'En güçlü GPT-4o erişimi + o3 modeli. Profesyonel kullanım için.',tr:5},{logo:'✦',bg:'rgba(99,102,241,0.15)',name:'Claude Max',why:'En uzun bağlam penceresi. Kitap/rapor gibi çok uzun içerikler için.',tr:4}],
+  },
+  gorsel: {
+    ucretsiz: [{logo:'🎨',bg:'rgba(168,85,247,0.15)',name:'Adobe Firefly Free',why:'Haftada 25 kredi ücretsiz. Ticari kullanım hakkıyla gelen tek büyük araç.',tr:3},{logo:'⚡',bg:'rgba(245,158,11,0.15)',name:'Bing Image Creator',why:'DALL-E tabanlı, tamamen ücretsiz. Türkçe prompt anlıyor.',tr:4},{logo:'🖼️',bg:'rgba(239,68,68,0.15)',name:'Canva AI Free',why:'Canva içinde ücretsiz görsel üretimi. Sosyal medya için hazır şablonlar.',tr:5}],
+    ucuz: [{logo:'🎨',bg:'rgba(168,85,247,0.15)',name:'Midjourney Basic',why:'Aylık $10. Sanatsal kalite için altın standart.',tr:2},{logo:'⚡',bg:'rgba(245,158,11,0.15)',name:'Leonardo AI',why:'Aylık ~$12. Hızlı ve gerçekçi sonuçlar.',tr:3}],
+    premium: [{logo:'🎨',bg:'rgba(168,85,247,0.15)',name:'Midjourney Pro',why:'Aylık $60. Sınırsız görsel, en yüksek kalite.',tr:2}],
+  },
+  kod: {
+    ucretsiz: [{logo:'⌨️',bg:'rgba(6,182,212,0.15)',name:'Cursor Free',why:'VS Code tabanlı, en iyi ücretsiz AI kod editörü.',tr:2},{logo:'🐙',bg:'rgba(16,185,129,0.15)',name:'GitHub Copilot Free',why:'Ayda 2000 kod tamamlama ücretsiz. Popüler diller için güçlü.',tr:3}],
+    ucuz: [{logo:'⌨️',bg:'rgba(6,182,212,0.15)',name:'Cursor Pro',why:'Aylık $20. Sınırsız kod yazma + Claude ve GPT erişimi.',tr:3},{logo:'🔵',bg:'rgba(168,85,247,0.15)',name:'GitHub Copilot',why:'Aylık $10. IDE entegrasyonu mükemmel.',tr:3}],
+    premium: [{logo:'⌨️',bg:'rgba(6,182,212,0.15)',name:'Cursor Business',why:'Aylık $40. Ekip kullanımı, en hızlı yanıt süresi.',tr:3}],
+  },
+  analiz: {
+    ucretsiz: [{logo:'🔬',bg:'rgba(20,184,166,0.15)',name:'Perplexity Free',why:'Kaynak göstererek araştırma. Güncel web verilerine erişir.',tr:4},{logo:'✦',bg:'rgba(99,102,241,0.15)',name:'Claude Free',why:'Uzun belgeleri yükleyip analiz etmek için en iyi ücretsiz seçenek.',tr:4}],
+    ucuz: [{logo:'🔬',bg:'rgba(20,184,166,0.15)',name:'Perplexity Pro',why:'Aylık $20. Akademik kaynaklar + gelişmiş arama.',tr:4}],
+    premium: [{logo:'🤖',bg:'rgba(16,185,129,0.15)',name:'ChatGPT Plus + Code',why:'Python kod çalıştırma + görsel analiz. Veri bilimciler için.',tr:5}],
+  },
+};
+function aiqSelect(key, val, el) {
+  aiqData[key] = val;
+  el.closest('.aiq-opts').querySelectorAll('.aiq-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  setTimeout(() => {
+    if(key==='amaç') { document.getElementById('aiq-1').style.display='none'; document.getElementById('aiq-2').style.display='block'; }
+    if(key==='bütçe') { document.getElementById('aiq-2').style.display='none'; document.getElementById('aiq-3').style.display='block'; }
+    if(key==='dil') showAiqResult();
+  }, 300);
+}
+function showAiqResult() {
+  const {amaç, bütçe, dil} = aiqData;
+  const recs = (AIQ_RECS[amaç]?.[bütçe]) || (AIQ_RECS[amaç]?.ucretsiz) || [];
+  const dlNote = dil==='zorunlu' ? '🇹🇷 Türkçe desteği öncelikli sıralama uygulandı.' : dil==='tercih' ? '🔡 Türkçe desteği iyi olan araçlar öne alındı.' : '🌍 En güçlü araçlar listelendi.';
+  const sorted = dil==='zorunlu' ? [...recs].sort((a,b)=>b.tr-a.tr) : recs;
+  document.getElementById('aiq-3').style.display='none';
+  document.getElementById('aiq-result').innerHTML = `
+    <div style="text-align:center;margin-bottom:1rem;font-size:0.82rem;color:var(--muted)">${dlNote}</div>
+    <div class="aiq-result-grid">
+      ${sorted.map((r,i)=>`
+        <div class="aiq-rec" style="${i===0?'border-color:var(--primary)':''}">
+          ${i===0?'<div style="font-size:0.68rem;font-weight:800;color:var(--primary);text-transform:uppercase;margin-bottom:0.5rem">⭐ En İyi Eşleşme</div>':''}
+          <div class="aiq-rec-top"><div class="aiq-rec-logo" style="background:${r.bg}">${r.logo}</div><div class="aiq-rec-name">${r.name}</div></div>
+          <div class="aiq-rec-why">${r.why}</div>
+          <div class="aiq-tr-score">${'🇹🇷'.repeat(r.tr)}${'⬜'.repeat(5-r.tr)}</div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:0.2rem">Türkçe Destek Skoru</div>
+        </div>`).join('')}
+    </div>
+    <button onclick="location.reload()" style="margin-top:1.2rem;width:100%;padding:0.7rem;background:rgba(168,85,247,0.15);border:1px solid var(--primary);border-radius:10px;color:var(--primary);font-weight:700;cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--primary)';this.style.color='white'" onmouseout="this.style.background='rgba(168,85,247,0.15)';this.style.color='var(--primary)'">🔄 Farklı Seçimlerle Tekrar Dene</button>`;
+  document.getElementById('aiq-result').style.display = 'block';
+}
+
+// ─── PROMPT OKULU ─────────────────────────────────────────────────────────────
+const PS_DATA = [
+  {num:'01', title:'Rol Ver', bad:'Blog yazısı yaz.', good:'Sen deneyimli bir SEO uzmanısın. [KONU] hakkında Google\'da üst sıralara çıkacak, 1500 kelimelik Türkçe blog yazısı yaz.', tip:'Rol vermek çıktı kalitesini ortalama %40 artırır.'},
+  {num:'02', title:'Format Belirt', bad:'Bu konuyu anlat.', good:'[KONU]\'yu şu formatta açıkla: 1) Tanım (2 cümle) 2) 3 somut örnek 3) Pratik ipuçları 4) Kaçınılması gerekenler', tip:'Format belirtmek yapılandırılmış, kullanılabilir içerik üretir.'},
+  {num:'03', title:'Adım Adım Düşündür', bad:'Bu matematik sorusunu çöz: ...', good:'Bu matematik sorusunu çöz: ...\n\nAdım adım çöz. Her adımı ayrı satırda göster ve neden o adımı attığını açıkla.', tip:'"Chain-of-thought" tekniği hatayı %60 azaltır.'},
+  {num:'04', title:'Eleştirmesini İste', bad:'Bu metni değerlendir.', good:'Bu metni üç farklı açıdan eleştir: 1) Dilbilgisi ve akıcılık 2) Argüman gücü 3) Okuyucu için değer. Her madde için 1-10 puan ver ve gerekçe yaz.', tip:'Yapılandırılmış eleştiri, belirsiz geri bildirimden çok daha değerlidir.'},
+  {num:'05', title:'Alternatif İste', bad:'Bu başlığı düzelt.', good:'Bu başlık için 5 farklı alternatif yaz. Her biri farklı bir ton taşısın: meraklı, acil, fayda odaklı, soru biçimli, rakam içeren.', tip:'Alternatifler üretmek en iyi seçeneği bulmayı kolaylaştırır.'},
+];
+document.getElementById('ps-grid').innerHTML = PS_DATA.map(p => `
+  <div class="ps-card">
+    <div class="ps-num">${p.num}</div>
+    <div class="ps-title">${p.title}</div>
+    <div class="ps-label" style="color:#fca5a5">❌ Zayıf Prompt</div>
+    <div class="ps-bad">${p.bad}</div>
+    <div class="ps-label" style="color:#86efac;margin-top:0.5rem">✅ Güçlü Prompt</div>
+    <div class="ps-good">${p.good}</div>
+    <div style="margin-top:0.8rem;font-size:0.78rem;color:var(--muted);background:rgba(255,255,255,0.03);border-radius:6px;padding:0.5rem">💡 ${p.tip}</div>
+  </div>`).join('');
+
+// ─── PARA KAZAN ───────────────────────────────────────────────────────────────
+const EARN_DATA = [
+  {icon:'✍️', title:'AI Destekli Freelance Yazarlık', range:'$500-3.000/ay', desc:'Fiverr ve Upwork\'te Türkçe & İngilizce içerik üretimi. ChatGPT ile üretip editleyerek 5x daha hızlı iş teslim edebilirsin.'},
+  {icon:'🎨', title:'AI Görsel Satışı', range:'$200-1.500/ay', desc:'Midjourney ile ürettiğin görselleri Adobe Stock, Shutterstock ve Etsy\'de sat. Ticari lisans için Adobe Firefly tercih et.'},
+  {icon:'📱', title:'Sosyal Medya Yönetimi', range:'$300-2.000/ay', desc:'KOBİ\'lerin sosyal medyasını yönet. AI ile içerik oluştur, program yaz, görsel üret. Müşteri başına 1.500-5.000₺.'},
+  {icon:'🤖', title:'AI Otomasyon Danışmanlığı', range:'$1.000-5.000/ay', desc:'Zapier, Make ve n8n ile şirket süreçlerini otomatize et. Türkiye\'de bu alanda talep patlama döneminde.'},
+  {icon:'🎓', title:'AI Eğitimi Sat', range:'$500-4.000/ay', desc:'Udemy Türkçe kurs veya Zoom workshop\'larıyla ChatGPT & AI araç eğitimi ver. Ortalama kurs fiyatı 200-500₺.'},
+  {icon:'💻', title:'No-Code Uygulama Geliştirme', range:'$500-3.000/ay', desc:'Bubble, Glide ve Cursor ile AI yardımlı uygulama geliştir. Müşterilere özel araç kurulumu yaparak gelir üret.'},
+];
+document.getElementById('earn-grid').innerHTML = EARN_DATA.map(e => `
+  <div class="earn-card">
+    <div class="earn-icon">${e.icon}</div>
+    <div class="earn-title">${e.title}</div>
+    <div class="earn-range">${e.range}</div>
+    <div class="earn-desc">${e.desc}</div>
+  </div>`).join('');
 
 window.addEventListener('load', () => {
   renderCats();
