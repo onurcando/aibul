@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIBul – Türkiye'nin En Büyük Yapay Zeka Araçları Rehberi 2026</title>
+<meta name="description" content="500+ yapay zeka aracını Türkçe inceleyin. Ücretsiz AI araçları, ChatGPT alternatifleri, Türkçe prompt kütüphanesi. Günlük AI haberleri ile daima güncel kalın.">
+<meta name="keywords" content="yapay zeka araçları, ücretsiz AI araçları, ChatGPT Türkçe, yapay zeka listesi, AI Türkiye, Türkçe prompt, yapay zeka haber 2026">
+<meta property="og:title" content="AIBul – Türkiye'nin En Büyük Yapay Zeka Rehberi">
+<meta property="og:description" content="500+ AI aracı, Türkçe prompt kütüphanesi, günlük yapay zeka haberleri.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --card: #0d0d0d;
+    --card2: #141414;
+    --border: #222;
+    --primary: #a855f7;
+    --primary-dark: #9333ea;
+    --secondary: #22d3ee;
+    --accent: #f472b6;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --text: #f1f5f9;
+    --muted: #71717a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); }
+  a { text-decoration:none; color:inherit; }
+
+  /* NAV */
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(5,5,5,0.92); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+    padding:0 1.5rem; height:60px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo { font-weight:900; font-size:1.3rem; background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .nav-right { display:flex; align-items:center; gap:1rem; }
+  .nav-link { color:var(--muted); font-size:0.88rem; font-weight:500; transition:color .2s; }
+  .nav-link:hover { color:var(--text); }
+  .nav-search {
+    display:flex; align-items:center; gap:0.5rem;
+    background:var(--card2); border:1px solid var(--border); border-radius:8px;
+    padding:0.4rem 0.8rem; width:220px;
+  }
+  .nav-search input { background:none; border:none; color:var(--text); font-size:0.85rem; width:100%; outline:none; }
+  .nav-search input::placeholder { color:var(--muted); }
+
+  /* HERO */
+  .hero {
+    padding:5rem 1.5rem 3rem; text-align:center; max-width:900px; margin:0 auto;
+    position:relative;
+  }
+  .hero::before {
+    content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:600px; height:300px;
+    background:radial-gradient(ellipse at center, rgba(168,85,247,0.15), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(168,85,247,0.12); border:1px solid rgba(168,85,247,0.3);
+    color:var(--primary); padding:0.3rem 0.9rem; border-radius:20px;
+    font-size:0.78rem; font-weight:700; margin-bottom:1.5rem;
+    animation:badge-glow 3s infinite;
+  }
+  @keyframes badge-glow { 0%,100%{box-shadow:0 0 0 rgba(168,85,247,0)} 50%{box-shadow:0 0 16px rgba(168,85,247,0.3)} }
+  .hero h1 { font-size:3.2rem; font-weight:900; line-height:1.1; margin-bottom:1.2rem; }
+  .hero h1 .grad { background:linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--muted); font-size:1.05rem; max-width:600px; margin:0 auto 2.5rem; }
+
+  /* SEARCH */
+  .search-box {
+    max-width:640px; margin:0 auto; position:relative; margin-bottom:1.5rem;
+  }
+  .search-input {
+    width:100%; padding:1rem 1rem 1rem 3rem; border-radius:14px;
+    background:var(--card2); border:1px solid var(--border); color:var(--text);
+    font-size:1rem; outline:none; transition:border-color .2s;
+  }
+  .search-input:focus { border-color:var(--primary); }
+  .search-input::placeholder { color:var(--muted); }
+  .search-icon { position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--muted); font-size:1rem; }
+  .search-tags { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; }
+  .search-tag {
+    padding:0.3rem 0.8rem; border-radius:20px; border:1px solid var(--border);
+    color:var(--muted); font-size:0.8rem; cursor:pointer; transition:all .2s;
+  }
+  .search-tag:hover { border-color:var(--primary); color:var(--primary); }
+
+  /* STATS */
+  .quick-stats { display:flex; justify-content:center; gap:3rem; padding:2rem 1.5rem; flex-wrap:wrap; }
+  .qs { text-align:center; }
+  .qs-num { font-size:1.8rem; font-weight:900; color:var(--primary); }
+  .qs-label { color:var(--muted); font-size:0.78rem; margin-top:0.1rem; }
+
+  /* CATEGORIES */
+  .categories { max-width:1300px; margin:3rem auto; padding:0 1.5rem; }
+  .section-label { font-size:0.75rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem; }
+  .cat-grid { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:3rem; }
+  .cat-btn {
+    padding:0.5rem 1rem; border-radius:10px; border:1px solid var(--border);
+    background:var(--card2); color:var(--muted); font-size:0.85rem; font-weight:600;
+    cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:0.4rem;
+  }
+  .cat-btn:hover, .cat-btn.active { border-color:var(--primary); color:var(--primary); background:rgba(168,85,247,0.08); }
+  .cat-count { background:rgba(168,85,247,0.15); color:var(--primary); padding:0 0.4rem; border-radius:4px; font-size:0.72rem; }
+
+  /* TOOLS GRID */
+  .tools-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+  .tools-header h2 { font-size:1.3rem; font-weight:800; }
+  .tools-sort { display:flex; gap:0.5rem; }
+  .sort-btn { padding:0.35rem 0.8rem; border-radius:6px; border:1px solid var(--border); background:none; color:var(--muted); font-size:0.8rem; cursor:pointer; transition:all .2s; }
+  .sort-btn.active { background:var(--primary); border-color:var(--primary); color:white; }
+
+  .tools-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:1rem; }
+  .tool-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:1.2rem; cursor:pointer; transition:all .2s;
+    display:flex; flex-direction:column; gap:0.8rem;
+    position:relative; overflow:hidden;
+  }
+  .tool-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 8px 32px rgba(168,85,247,0.1); }
+  .tool-card-top { display:flex; align-items:flex-start; gap:0.8rem; }
+  .tool-logo { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+  .tool-meta { flex:1; }
+  .tool-name { font-weight:700; font-size:0.95rem; margin-bottom:0.15rem; }
+  .tool-cat { color:var(--muted); font-size:0.75rem; }
+  .tool-badges { display:flex; gap:0.4rem; flex-wrap:wrap; }
+  .badge { padding:0.15rem 0.5rem; border-radius:4px; font-size:0.7rem; font-weight:700; }
+  .badge-free { background:rgba(74,222,128,0.15); color:var(--success); }
+  .badge-paid { background:rgba(251,191,36,0.15); color:var(--warning); }
+  .badge-tr { background:rgba(34,211,238,0.15); color:var(--secondary); }
+  .badge-hot { background:rgba(244,114,182,0.15); color:var(--accent); }
+  .badge-new { background:rgba(168,85,247,0.15); color:var(--primary); }
+  .tool-desc { color:var(--muted); font-size:0.82rem; line-height:1.5; }
+  .tool-footer { display:flex; align-items:center; justify-content:space-between; margin-top:0.4rem; }
+  .tool-rating { color:var(--warning); font-size:0.8rem; font-weight:600; }
+  .tool-visits { color:var(--muted); font-size:0.75rem; }
+  .tool-card-ribbon { position:absolute; top:10px; right:-18px; background:var(--accent); color:white; font-size:0.65rem; font-weight:800; padding:0.2rem 1.2rem; transform:rotate(35deg); width:70px; text-align:center; }
+
+  /* PROMPT KÜTÜPHANESİ */
+  .prompts-section { max-width:1300px; margin:5rem auto; padding:0 1.5rem; }
+  .prompts-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1rem; margin-top:1.5rem; }
+  .prompt-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:1.2rem; cursor:pointer; transition:all .2s;
+  }
+  .prompt-card:hover { border-color:rgba(168,85,247,0.5); }
+  .prompt-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.8rem; }
+  .prompt-title { font-weight:700; font-size:0.9rem; }
+  .prompt-copy { background:rgba(168,85,247,0.15); border:none; color:var(--primary); padding:0.25rem 0.6rem; border-radius:6px; font-size:0.72rem; font-weight:700; cursor:pointer; transition:all .2s; }
+  .prompt-copy:hover { background:var(--primary); color:white; }
+  .prompt-text { background:var(--card2); border:1px solid var(--border); border-radius:8px; padding:0.8rem; font-size:0.8rem; color:var(--muted); font-family:monospace; line-height:1.6; margin-bottom:0.8rem; }
+  .prompt-tags { display:flex; gap:0.4rem; flex-wrap:wrap; }
+  .prompt-tag { padding:0.15rem 0.5rem; background:rgba(255,255,255,0.05); border-radius:4px; font-size:0.7rem; color:var(--muted); }
+  .prompt-uses { color:var(--muted); font-size:0.72rem; margin-top:0.6rem; }
+
+  /* HABERLEr */
+  .news-section { max-width:1300px; margin:5rem auto 3rem; padding:0 1.5rem; }
+  .news-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1rem; margin-top:1.5rem; }
+  .news-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:1.2rem; transition:all .2s; cursor:pointer;
+  }
+  .news-card:hover { border-color:rgba(168,85,247,0.4); transform:translateY(-2px); }
+  .news-tag { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:0.6rem; }
+  .news-title { font-weight:700; font-size:0.95rem; margin-bottom:0.6rem; line-height:1.4; }
+  .news-date { color:var(--muted); font-size:0.75rem; }
+  .news-summary { color:var(--muted); font-size:0.82rem; line-height:1.5; margin:0.6rem 0; }
+
+  /* NEWSLETTER */
+  .newsletter {
+    max-width:700px; margin:0 auto 5rem; padding:0 1.5rem; text-align:center;
+  }
+  .nl-card {
+    background:linear-gradient(135deg,rgba(168,85,247,0.12),rgba(244,114,182,0.08));
+    border:1px solid rgba(168,85,247,0.25); border-radius:20px; padding:2.5rem;
+  }
+  .nl-card h2 { font-size:1.6rem; font-weight:900; margin-bottom:0.8rem; }
+  .nl-card p { color:var(--muted); margin-bottom:1.5rem; font-size:0.9rem; }
+  .nl-row { display:flex; gap:0.7rem; }
+  .nl-input { flex:1; padding:0.8rem 1rem; border-radius:10px; background:rgba(255,255,255,0.07); border:1px solid var(--border); color:var(--text); font-size:0.9rem; outline:none; }
+  .nl-input:focus { border-color:var(--primary); }
+  .nl-btn { background:linear-gradient(135deg,var(--primary),var(--accent)); border:none; color:white; padding:0.8rem 1.5rem; border-radius:10px; font-weight:700; cursor:pointer; white-space:nowrap; transition:all .2s; }
+  .nl-btn:hover { transform:scale(1.03); }
+
+  /* TOAST */
+  .toast { position:fixed; bottom:2rem; right:2rem; background:#1a1a1a; border:1px solid var(--primary); color:white; padding:0.8rem 1.2rem; border-radius:10px; font-size:0.85rem; z-index:500; transform:translateY(100px); opacity:0; transition:all .3s; }
+  .toast.show { transform:translateY(0); opacity:1; }
+
+  footer { border-top:1px solid var(--border); padding:2rem 1.5rem; max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  .footer-links a { color:var(--muted); font-size:0.82rem; margin-left:1.5rem; }
+
+  @media(max-width:768px) {
+    .hero h1 { font-size:2rem; }
+    .nav-search { display:none; }
+    .nl-row { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AIBul</div>
+  <div class="nav-search">
+    <span class="search-icon">🔍</span>
+    <input type="text" placeholder="AI aracı ara..." id="nav-search-inp" oninput="filterTools(this.value)">
+  </div>
+  <div class="nav-right">
+    <a href="#araclar" class="nav-link">Araçlar</a>
+    <a href="#promptlar" class="nav-link">Promptlar</a>
+    <a href="#haberler" class="nav-link">Haberler</a>
+    <a href="#newsletter" class="nav-link" style="background:rgba(168,85,247,0.15);color:var(--primary);padding:0.4rem 0.9rem;border-radius:8px;font-weight:700">Bülten</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🇹🇷 Türkiye'nin #1 AI Rehberi · Günlük Güncellenir</div>
+  <h1>Doğru <span class="grad">Yapay Zeka</span> Aracını Bul</h1>
+  <p>500'den fazla AI aracı, Türkçe incelemeler, prompt kütüphanesi ve günlük haberler — ücretsiz.</p>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" placeholder="Örn: 'görsel oluştur', 'kod yaz', 'çeviri yap'..." id="hero-search" oninput="filterTools(this.value)">
+  </div>
+  <div class="search-tags">
+    <span class="search-tag" onclick="filterTools('metin')">✍️ Metin Yazma</span>
+    <span class="search-tag" onclick="filterTools('görsel')">🎨 Görsel Üretme</span>
+    <span class="search-tag" onclick="filterTools('kod')">💻 Kod Yazma</span>
+    <span class="search-tag" onclick="filterTools('video')">🎬 Video</span>
+    <span class="search-tag" onclick="filterTools('ses')">🎵 Ses & Müzik</span>
+    <span class="search-tag" onclick="filterTools('ücretsiz')">🆓 Ücretsiz</span>
+  </div>
+</div>
+
+<div class="quick-stats">
+  <div class="qs"><div class="qs-num" id="c1">0</div><div class="qs-label">AI Aracı</div></div>
+  <div class="qs"><div class="qs-num">Türkçe</div><div class="qs-label">İncelemeler</div></div>
+  <div class="qs"><div class="qs-num" id="c2">0</div><div class="qs-label">Prompt Şablonu</div></div>
+  <div class="qs"><div class="qs-num">Günlük</div><div class="qs-label">AI Haberleri</div></div>
+</div>
+
+<!-- ARAÇLAR -->
+<div class="categories" id="araclar">
+  <div class="section-label">Kategoriler</div>
+  <div class="cat-grid" id="cat-grid"></div>
+  <div class="tools-header">
+    <h2 id="tools-heading">Tüm AI Araçları <span style="color:var(--muted);font-weight:400;font-size:1rem" id="tools-count"></span></h2>
+    <div class="tools-sort">
+      <button class="sort-btn active" onclick="sortTools('popular',this)">🔥 Popüler</button>
+      <button class="sort-btn" onclick="sortTools('new',this)">✨ Yeni</button>
+      <button class="sort-btn" onclick="sortTools('free',this)">🆓 Ücretsiz</button>
+      <button class="sort-btn" onclick="sortTools('tr',this)">🇹🇷 Türkçe</button>
+    </div>
+  </div>
+  <div class="tools-grid" id="tools-grid"></div>
+  <div style="text-align:center;margin-top:2rem">
+    <button id="load-more" class="sort-btn" style="padding:0.7rem 2rem;font-size:0.9rem" onclick="loadMore()">Daha Fazla Gör (300+ araç daha) ↓</button>
+  </div>
+</div>
+
+<!-- PROMPT KÜTÜPHANESİ -->
+<div class="prompts-section" id="promptlar">
+  <div class="section-label">Prompt Kütüphanesi</div>
+  <div class="tools-header">
+    <h2>Hazır Türkçe Promptlar</h2>
+    <div class="tools-sort">
+      <button class="sort-btn active">Tümü</button>
+      <button class="sort-btn">İş</button>
+      <button class="sort-btn">Eğitim</button>
+      <button class="sort-btn">Yaratıcı</button>
+    </div>
+  </div>
+  <div class="prompts-grid" id="prompts-grid"></div>
+</div>
+
+<!-- HABERLER -->
+<div class="news-section" id="haberler">
+  <div class="section-label">Güncel AI Haberleri</div>
+  <div class="tools-header">
+    <h2>Bugünün AI Gündemi</h2>
+    <a href="#" style="color:var(--primary);font-size:0.85rem;font-weight:600">Tümünü Gör →</a>
+  </div>
+  <div class="news-grid" id="news-grid"></div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter" id="newsletter">
+  <div class="nl-card">
+    <h2>AI'dan Geri Kalmayın</h2>
+    <p>Her hafta en iyi yeni AI araçları, Türkçe kullanım rehberleri ve promtlar doğrudan e-postanıza.</p>
+    <div class="nl-row">
+      <input type="email" class="nl-input" placeholder="e-posta@örnek.com">
+      <button class="nl-btn" onclick="showToast('Başarıyla abone oldunuz! 🎉')">Abone Ol</button>
+    </div>
+    <div style="margin-top:0.8rem;font-size:0.75rem;color:var(--muted)">18.400+ abone · Spam yok · İstediğinde çık</div>
+  </div>
+</div>
+
+<footer>
+  <div style="font-weight:900;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AIBul</div>
+  <div style="color:var(--muted);font-size:0.8rem">© 2026 AIBul. Türkiye'nin #1 Yapay Zeka Rehberi.</div>
+  <div>
+    <a href="#" class="footer-link" style="color:var(--muted);font-size:0.82rem">Hakkında</a>
+    <a href="#" class="footer-link" style="color:var(--muted);font-size:0.82rem;margin-left:1.5rem">Araç Ekle</a>
+    <a href="#" class="footer-link" style="color:var(--muted);font-size:0.82rem;margin-left:1.5rem">İletişim</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CATS = [
+  {name:'Tümü', icon:'🔲', count:524},
+  {name:'Metin Yazma', icon:'✍️', count:87},
+  {name:'Görsel Üretme', icon:'🎨', count:64},
+  {name:'Kod Yazma', icon:'💻', count:52},
+  {name:'Video', icon:'🎬', count:38},
+  {name:'Ses & Müzik', icon:'🎵', count:31},
+  {name:'SEO & Pazarlama', icon:'📈', count:44},
+  {name:'Eğitim', icon:'🎓', count:29},
+  {name:'İş & Verimlilik', icon:'💼', count:56},
+  {name:'Çeviri', icon:'🌍', count:18},
+  {name:'Tasarım', icon:'🖌️', count:43},
+  {name:'Araştırma', icon:'🔬', count:22},
+];
+
+const TOOLS_DATA = [
+  {name:'ChatGPT', cat:'Metin Yazma', logo:'🤖', bg:'rgba(16,185,129,0.15)', free:true, tr:true, hot:true, isNew:false, desc:'OpenAI\'ın en güçlü sohbet asistanı. Yazı yazmak, analiz etmek, kod üretmek için vazgeçilmez.', rating:'4.9', visits:'1.2M+/ay', tags:['metin','kod','analiz']},
+  {name:'Midjourney', cat:'Görsel Üretme', logo:'🎨', bg:'rgba(168,85,247,0.15)', free:false, tr:false, hot:true, isNew:false, desc:'Metinden inanılmaz görseller üretir. Yaratıcı projeler için profesyonel tercih.', rating:'4.8', visits:'840K+/ay', tags:['görsel']},
+  {name:'Claude', cat:'Metin Yazma', logo:'✦', bg:'rgba(99,102,241,0.15)', free:true, tr:true, hot:true, isNew:false, desc:'Anthropic\'in gelişmiş AI asistanı. Uzun içerik analizi ve metin üretiminde öne çıkıyor.', rating:'4.9', visits:'620K+/ay', tags:['metin','analiz','kod']},
+  {name:'ElevenLabs', cat:'Ses & Müzik', logo:'🎙️', bg:'rgba(245,158,11,0.15)', free:true, tr:true, hot:false, isNew:false, desc:'Yapay zeka seslendirme aracı. Türkçe için en doğal sesi üretiyor.', rating:'4.7', visits:'280K+/ay', tags:['ses','türkçe']},
+  {name:'Cursor', cat:'Kod Yazma', logo:'⌨️', bg:'rgba(6,182,212,0.15)', free:true, tr:false, hot:true, isNew:false, desc:'AI destekli kod editörü. Kodunu yazarken anlık öneriler ve tamamlamalar sunar.', rating:'4.8', visits:'430K+/ay', tags:['kod']},
+  {name:'Canva AI', cat:'Tasarım', logo:'🖼️', bg:'rgba(239,68,68,0.15)', free:true, tr:true, hot:false, isNew:false, desc:'Tasarım yapay zekası. Türkçe sunum, sosyal medya içeriği ve görseller oluştur.', rating:'4.6', visits:'560K+/ay', tags:['tasarım','görsel','türkçe']},
+  {name:'Sora', cat:'Video', logo:'🎬', bg:'rgba(168,85,247,0.15)', free:false, tr:false, hot:true, isNew:true, desc:'OpenAI\'ın video üretme modeli. Metinden sinematik kalitede video oluşturuyor.', rating:'4.7', visits:'190K+/ay', tags:['video']},
+  {name:'Perplexity AI', cat:'Araştırma', logo:'🔬', bg:'rgba(20,184,166,0.15)', free:true, tr:false, hot:false, isNew:false, desc:'AI destekli arama motoru. Kaynak göstererek detaylı araştırma yapıyor.', rating:'4.6', visits:'380K+/ay', tags:['araştırma','metin']},
+  {name:'DeepL', cat:'Çeviri', logo:'🌍', bg:'rgba(99,102,241,0.15)', free:true, tr:true, hot:false, isNew:false, desc:'Dünyanın en iyi çeviri AI\'ı. Türkçe-İngilizce çevirilerde oldukça başarılı.', rating:'4.7', visits:'310K+/ay', tags:['çeviri','türkçe']},
+  {name:'Notion AI', cat:'İş & Verimlilik', logo:'📝', bg:'rgba(16,185,129,0.15)', free:true, tr:false, hot:false, isNew:false, desc:'Notion\'a entegre yapay zeka. Not almak, özetlemek ve içerik üretmek için.', rating:'4.5', visits:'260K+/ay', tags:['verimlilik','metin']},
+  {name:'Udio', cat:'Ses & Müzik', logo:'🎵', bg:'rgba(236,72,153,0.15)', free:true, tr:false, hot:false, isNew:true, desc:'Yapay zeka ile müzik üret. İstediğin türde özgün şarkılar oluştur.', rating:'4.4', visits:'95K+/ay', tags:['müzik','ses']},
+  {name:'Gamma', cat:'İş & Verimlilik', logo:'⚡', bg:'rgba(245,158,11,0.15)', free:true, tr:true, hot:false, isNew:false, desc:'AI ile anında sunum hazırla. Türkçe içerik desteğiyle Türkiye\'de çok kullanılıyor.', rating:'4.5', visits:'145K+/ay', tags:['sunum','türkçe']},
+];
+
+const PROMPTS_DATA = [
+  {title:'SEO Blog Yazısı Üret', text:'[KONU] hakkında Türkçe, SEO uyumlu 1500 kelimelik bir blog yazısı yaz. Başlık, alt başlıklar (H2, H3), giriş paragrafı, ve sonuç kısmı içersin. Anahtar kelime olarak "[ANAHTAR_KELİME]" kullan. Okunabilirlik skoru yüksek, bilgilendirici ve özgün olsun.', tags:['SEO','Blog','İçerik'], uses:'12.400 kullanım'},
+  {title:'İş E-postası Yaz', text:'Aşağıdaki konuda profesyonel bir iş e-postası yaz:\nKonu: [KONU]\nGönderen: [İSMİN]\nAlıcı: [ALICI_UNVANI]\nAmaç: [AMAÇ]\nTon: Resmi ama sıcak. Türkçe dilbilgisi kurallarına uy.', tags:['İş','E-posta','İletişim'], uses:'8.700 kullanım'},
+  {title:'Ürün Açıklaması Yaz', text:'Aşağıdaki ürün için dönüştürücü bir e-ticaret açıklaması yaz:\nÜrün: [ÜRÜN_ADI]\nHedef Kitle: [HEDEF_KİTLE]\nÖzellikler: [ÖZELLİKLER]\nFaydalar öne çıksın, duygusal bağ kursun, harekete geçirici mesaj (CTA) ile bitsin. 200-300 kelime.', tags:['E-ticaret','Satış','Metin'], uses:'6.200 kullanım'},
+  {title:'Sosyal Medya İçeriği', text:'[MARKA/KİŞİ] için Instagram\'da viral olabilecek [ADET] adet post metni yaz. Her biri:\n- İlk cümle dikkat çekici olsun\n- Emoji kullan\n- 3-5 hashtag ekle\n- CTA ile bitsin\nTon: [TON seç: eğlenceli/ilham verici/eğitici]', tags:['Sosyal Medya','Instagram','İçerik'], uses:'15.800 kullanım'},
+  {title:'CV ve Özgeçmiş', text:'Aşağıdaki bilgilerle güçlü bir Türkçe CV/özgeçmiş yaz:\nAd-Soyad: [İSİM]\nHedeflenen Pozisyon: [POZİSYON]\nTecrübe: [TECRÜBE_YILLARI] yıl\nBeceriler: [BECERİLER]\nÖzet bölümü, tecrübe, beceriler ve eğitim sectionları içersin. Güçlü fiiller kullan.', tags:['Kariyer','CV','İş Başvurusu'], uses:'9.100 kullanım'},
+  {title:'Python Kod Yaz', text:'Aşağıdaki görevi yapan temiz Python kodu yaz:\n[GÖREV_AÇIKLAMASI]\n\nGereksinimler:\n- Yorumlar Türkçe olsun\n- Hata yönetimi ekle\n- Değişken isimleri anlamlı olsun\n- Gerekirse fonksiyonlara böl\n- En altında örnek kullanım göster', tags:['Kod','Python','Yazılım'], uses:'7.400 kullanım'},
+];
+
+const NEWS_DATA = [
+  {tag:'OpenAI', tagColor:'#4ade80', title:'ChatGPT-5 Türkçe Desteğini Güçlendirdi: Yeni Özellikler Neler?', date:'7 Haziran 2026', summary:'OpenAI\'ın en son güncellemesiyle ChatGPT, Türkçe dil anlama kapasitesini %40 artırdı. Türkiye kullanıcı sayısı 8 milyonu aştı.'},
+  {tag:'Anthropic', tagColor:'var(--primary)', title:'Claude 4.6 ile Doküman Analizi Artık Ücretsiz', date:'6 Haziran 2026', summary:'Anthropic\'in yeni modeli Claude 4.6, 200K token bağlamıyla uzun belge analizini ücretsiz kullanıcılara açıyor.'},
+  {tag:'Türkiye', tagColor:'var(--warning)', title:'TCMB Yapay Zeka Strateji Belgesi Yayınlandı', date:'5 Haziran 2026', summary:'Türkiye Merkez Bankası, finans sektöründe AI kullanımı için kapsamlı yol haritasını açıkladı.'},
+  {tag:'Google', tagColor:'var(--secondary)', title:'Gemini Ultra Türkçe\'de Google Arama\'ya Entegre Oldu', date:'4 Haziran 2026', summary:'Google\'ın yapay zeka modeli Gemini, Türkiye\'deki arama sonuçlarını dönüştürmeye başladı.'},
+  {tag:'Startup', tagColor:'var(--accent)', title:'Türk AI Girişimi Getir, 50M$ Yatırım Aldı', date:'3 Haziran 2026', summary:'İstanbul merkezli AI girişimi, lojistik optimizasyonu için geliştirdiği modelle yatırımcı ilgisi çekti.'},
+  {tag:'Meta', tagColor:'#60a5fa', title:'Llama 4 Açık Kaynak Modeli Türkçe\'de Rekabetçi', date:'2 Haziran 2026', summary:'Meta\'nın açık kaynak büyük dil modeli Llama 4, Türkçe benchmark\'larda GPT-4 seviyesine yaklaştı.'},
+];
+
+let activeFilter = '';
+let displayCount = 12;
+
+function renderCats() {
+  const grid = document.getElementById('cat-grid');
+  grid.innerHTML = CATS.map((c,i) => `
+    <button class="cat-btn ${i===0?'active':''}" onclick="filterCat('${c.name}',this)">
+      ${c.icon} ${c.name} <span class="cat-count">${c.count}</span>
+    </button>`).join('');
+}
+
+function renderTools(data) {
+  const grid = document.getElementById('tools-grid');
+  document.getElementById('tools-count').textContent = `(${data.length} araç)`;
+  grid.innerHTML = data.slice(0, displayCount).map(t => `
+    <div class="tool-card" onclick="showToast('${t.name} için ziyaret et →')">
+      ${t.isNew ? '<div class="tool-card-ribbon">YENİ</div>' : ''}
+      <div class="tool-card-top">
+        <div class="tool-logo" style="background:${t.bg}">${t.logo}</div>
+        <div class="tool-meta">
+          <div class="tool-name">${t.name}</div>
+          <div class="tool-cat">${t.cat}</div>
+          <div class="tool-badges" style="margin-top:0.4rem">
+            ${t.free ? '<span class="badge badge-free">Ücretsiz Plan</span>' : '<span class="badge badge-paid">Ücretli</span>'}
+            ${t.tr ? '<span class="badge badge-tr">🇹🇷 Türkçe</span>' : ''}
+            ${t.hot ? '<span class="badge badge-hot">🔥 Trend</span>' : ''}
+          </div>
+        </div>
+      </div>
+      <div class="tool-desc">${t.desc}</div>
+      <div class="tool-footer">
+        <div class="tool-rating">⭐ ${t.rating}</div>
+        <div class="tool-visits">👥 ${t.visits}</div>
+      </div>
+    </div>`).join('');
+}
+
+function filterCat(name, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = name === 'Tümü' ? '' : name;
+  displayCount = 12;
+  applyFilters();
+}
+
+function filterTools(q) {
+  document.getElementById('hero-search').value = q;
+  document.getElementById('nav-search-inp').value = q;
+  activeFilter = q;
+  displayCount = 12;
+  applyFilters();
+}
+
+function applyFilters() {
+  let data = TOOLS_DATA;
+  if(activeFilter) {
+    const q = activeFilter.toLowerCase();
+    data = data.filter(t =>
+      t.name.toLowerCase().includes(q) ||
+      t.cat.toLowerCase().includes(q) ||
+      t.desc.toLowerCase().includes(q) ||
+      t.tags.some(tag => tag.includes(q)) ||
+      (q === 'ücretsiz' && t.free) ||
+      (q === 'türkçe' && t.tr)
+    );
+  }
+  renderTools(data);
+}
+
+function sortTools(type, btn) {
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  let data = [...TOOLS_DATA];
+  if(type==='free') data = data.filter(t=>t.free);
+  if(type==='tr') data = data.filter(t=>t.tr);
+  if(type==='new') data = data.filter(t=>t.isNew).concat(data.filter(t=>!t.isNew));
+  renderTools(data);
+}
+
+function loadMore() {
+  displayCount += 12;
+  applyFilters();
+  if(displayCount >= TOOLS_DATA.length) document.getElementById('load-more').style.display = 'none';
+}
+
+function renderPrompts() {
+  document.getElementById('prompts-grid').innerHTML = PROMPTS_DATA.map(p => `
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <div class="prompt-title">${p.title}</div>
+        <button class="prompt-copy" onclick="copyPrompt(this, \`${p.text.replace(/`/g,"'")}\`)">Kopyala</button>
+      </div>
+      <div class="prompt-text">${p.text.replace(/\n/g,'<br>')}</div>
+      <div class="prompt-tags">${p.tags.map(t=>`<span class="prompt-tag">#${t}</span>`).join('')}</div>
+      <div class="prompt-uses">👥 ${p.uses}</div>
+    </div>`).join('');
+}
+
+function renderNews() {
+  document.getElementById('news-grid').innerHTML = NEWS_DATA.map(n => `
+    <div class="news-card" onclick="showToast('Haber sayfasına yönlendiriliyorsunuz...')">
+      <div class="news-tag" style="color:${n.tagColor}">● ${n.tag}</div>
+      <div class="news-title">${n.title}</div>
+      <div class="news-summary">${n.summary}</div>
+      <div class="news-date">${n.date}</div>
+    </div>`).join('');
+}
+
+function copyPrompt(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Kopyalandı';
+    btn.style.background = 'var(--success)';
+    btn.style.color = 'white';
+    setTimeout(() => { btn.textContent = 'Kopyala'; btn.style.background = ''; btn.style.color = ''; }, 2000);
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Counter animation
+function animateCount(el, target, suffix='') {
+  let cur = 0;
+  const step = Math.ceil(target / 60);
+  const int = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = cur + suffix;
+    if(cur >= target) clearInterval(int);
+  }, 25);
+}
+
+window.addEventListener('load', () => {
+  renderCats();
+  renderTools(TOOLS_DATA);
+  renderPrompts();
+  renderNews();
+  animateCount(document.getElementById('c1'), 524, '+');
+  animateCount(document.getElementById('c2'), 240, '+');
+});
+</script>
+</body>
+</html>
